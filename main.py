@@ -13,13 +13,12 @@ from PIL import Image, ImageDraw, ImageFont
 import astrbot.core.message.components as Comp
 from astrbot import logger
 from astrbot.api.event import filter
-from astrbot.api.star import Context, Star, register
+from astrbot.api.star import Context, Star
 from astrbot.core.platform import AstrMessageEvent
 from astrbot.core.star.star_tools import StarTools
 
 
-@register("astrbot_plugin_history_day", "Zhalslar", "...", "...")
-class HistoryPlugin(Star):
+class HistoryDayPlugin(Star):
     def __init__(self, context: Context):
         super().__init__(context)
         self.month = date.today().strftime("%m")
@@ -81,7 +80,6 @@ class HistoryPlugin(Star):
 
         image_bytes = self.text_to_image_bytes(reply)
         yield event.chain_result([Comp.Image.fromBytes(image_bytes)])
-
 
 
     @staticmethod
